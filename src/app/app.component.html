@@ -1,31 +1,15 @@
 <app-toolbar (openSidebarEmitter)="openSidebar($event)"></app-toolbar>
 
-<nav>
-  <ul>
-    <li>
-      <a
-        routerLink="/"
-        routerLinkActive="active"
-      >Create</a>
-    </li>
-    <li>
-      <a
-        routerLink="read"
-        routerLinkActive="active"
-      >Read</a>
-    </li>
-    <li>
-      <a
-        routerLink="/update"
-        routerLinkActive="active"
-      >Update</a>
-    </li>
-    <li>
-      <a
-        routerLink="/delete"
-        routerLinkActive="active"
-      >Delete</a>
-    </li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<mat-sidenav-container class="container">
+  <mat-sidenav
+    class="container__sidenav"
+    [opened]="toggleSidebar"
+    mode="side"
+    position="start"
+  >
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
