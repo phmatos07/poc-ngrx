@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { CrudEffects } from './crud.effects';
 import { CrudFacade } from './crud.facade';
 import * as CrudReducer from './crud.reducer';
 
@@ -10,7 +12,7 @@ import * as CrudReducer from './crud.reducer';
       CrudReducer.KEY_CRUD,
       CrudReducer.reducer
     ),
-    // EffectsModule.forRoot([CrudEffects])
+    EffectsModule.forRoot([CrudEffects])
   ],
   providers: [CrudFacade]
 })
