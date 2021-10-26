@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from './../models/user.interface';
+import { User } from '../models/user.model';
 import * as CrudActions from './crud.actions';
 
 @Injectable()

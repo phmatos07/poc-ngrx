@@ -1,14 +1,16 @@
-/* import { createReducer, on } from '@ngrx/store';
-import { CREATE, decrement, reset } from './crud.actions';
+import { Action, createReducer, on } from '@ngrx/store';
+import { User } from '../models/user.model';
+import * as crudActions from './crud.actions';
 
-export const initialState = 0;
-const _counterReducer = createReducer(
-  initialState,
-  on(CREATE, (state) => state + 1),
-  on(decrement, (state) => state - 1),
+export const KEY_CRUD = 'CRUD';
+export const user = new User;
 
-);
+const _crud = createReducer(
+  user,
+  on(crudActions.CREATE, (state, data) => (
+    { ...data })
+  ));
 
-export function counterReducer(state, action) {
-  return _counterReducer(state, action);
-} */
+export function reducer(state: User, action: Action) {
+  return _crud(state, action);
+}
