@@ -58,12 +58,12 @@
     appearance="fill"
     class="form__field"
   >
-    <mat-label for="password">Senha: </mat-label>
+    <mat-label for="current-password">Senha: </mat-label>
     <input
       matInput
-      id="password"
+      id="current-password"
       [type]="displaysPassword ? 'text' : 'password'"
-      formControlName="password"
+      formControlName="currentPassword"
       maxlength="50"
       placeholder="Digite sua senha"
       required
