@@ -1,15 +1,17 @@
 {
   "name": "poc-ngrx",
   "version": "0.0.0",
+  "description": "NgRx Store fornece gerenciamento de estado reativo para aplicativos Angular inspirados em Redux. Unifique os eventos em seu aplicativo e obtenha o estado usando RxJS.",
+  "homepage": "https://github.com/phmatos07/api-restful#readme",
+  "author": "Phelipe Matos - PHMATOS07",
+  "private": true,
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.7",
     "@angular/cdk": "^11.2.13",
