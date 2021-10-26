@@ -1,1 +1,91 @@
 <h1>NGRX - Create</h1>
+
+<form
+  [formGroup]="userRegistration"
+  (ngSubmit)="onSubmit()"
+  class="form"
+>
+  <mat-form-field
+    appearance="fill"
+    class="form__field"
+  >
+    <mat-label for="name">Nome:</mat-label>
+    <input
+      matInput
+      id="name"
+      type="text"
+      formControlName="name"
+      maxlength="50"
+      placeholder="Digite seu nome completo"
+      required
+    >
+  </mat-form-field>
+
+  <mat-form-field
+    appearance="fill"
+    class="form__field"
+  >
+    <mat-label for="email">E-mail: </mat-label>
+    <input
+      matInput
+      id="email"
+      type="email"
+      formControlName="email"
+      maxlength="100"
+      placeholder="Digite seu e-mail"
+      required
+    >
+  </mat-form-field>
+
+  <mat-form-field
+    appearance="fill"
+    class="form__field"
+  >
+    <mat-label for="cell-phone">Celular: </mat-label>
+    <span matPrefix>+55 &nbsp;</span>
+    <input
+      matInput
+      id="cell-phone"
+      type="tel"
+      formControlName="cellPhone"
+      maxlength="11"
+      placeholder="Digite o DDD e o número de celular"
+      required
+    >
+  </mat-form-field>
+
+  <mat-form-field
+    appearance="fill"
+    class="form__field"
+  >
+    <mat-label for="password">Senha: </mat-label>
+    <input
+      matInput
+      id="password"
+      [type]="displaysPassword ? 'text' : 'password'"
+      formControlName="password"
+      maxlength="50"
+      placeholder="Digite sua senha"
+      required
+    >
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hidePassword()"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="displaysPassword"
+    >
+      <mat-icon>{{ displaysPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="form__field">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+    >
+      Cadastrar Usuário
+    </button>
+  </div>
+</form>
