@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from './../../models/user.model';
+import { CrudFacade } from './../../store/crud.facade';
 
 @Component({
   selector: 'app-read',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReadComponent implements OnInit {
 
-  constructor() { }
+  users$?: Observable<User[] | undefined>;
 
-  ngOnInit() { }
+  constructor(
+    private crud: CrudFacade
+  ) { }
+
+  ngOnInit(): void {
+    this.users$ = this.crud.users$;
+  }
 }
