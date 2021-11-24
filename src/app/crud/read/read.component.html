@@ -1,1 +1,19 @@
 <h1>NGRX - Read</h1>
+
+<table *ngIf="users$ | async as users" border="0">
+  <tr>
+    <th color="primary">Nome</th>
+    <th>E-mail</th>
+    <th>Celular</th>
+    <th>Senha</th>
+    <th>Data de Registro</th>
+  </tr>
+
+  <tr *ngFor="let user of users">
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.cellPhone }}</td>
+    <td>{{ user.password }}</td>
+    <td>{{ user.dateStamp }}</td>
+  </tr>
+</table>
