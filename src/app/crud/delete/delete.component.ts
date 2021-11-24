@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import { CrudFacade } from './../../store/crud.facade';
 
 @Component({
   selector: 'app-delete',
@@ -7,7 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteComponent implements OnInit {
 
-  constructor() { }
+  users$?: Observable<User[] | undefined>;
+  selectUsers = new FormControl('', [
+    Validators.required
+  ]);
 
-  ngOnInit() { }
+  constructor(
+    private crud: CrudFacade
+  ) { }
+
+  ngOnInit(): void {
+    this.users$ = this.crud.users$;
+  }
+
+  delete(): void {
+    if (this.selectUsers.valid) {
+      this.crud.delete(this.selectUsers.value);
+    }
+  }
 }
