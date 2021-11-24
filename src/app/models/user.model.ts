@@ -3,5 +3,5 @@ export class User {
   email!: string;
   cellPhone!: number;
   password!: string;
-  dateStamp?: number;
+  dateStamp?: string;
 }
