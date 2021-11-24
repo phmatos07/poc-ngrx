@@ -20,4 +20,8 @@ export class CrudFacade {
   create(user: User): void {
     this.store.dispatch(CrudActions.CREATE(user));
   }
+
+  delete(idUser: number): void {
+    this.store.dispatch(CrudActions.DELETE({ idUser }));
+  }
 }

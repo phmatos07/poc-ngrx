@@ -9,7 +9,8 @@ export const initialState = new ProfilesState();
 const _crud = createReducer(
   initialState,
   on(crudActions.INIT, (state) => ({ ...state })),
-  on(crudActions.CREATE, (state, userState) => (CrudHelpers.addValue(state, userState)))
+  on(crudActions.CREATE, (state, userState) => (CrudHelpers.addValue(state, userState))),
+  on(crudActions.DELETE, (state, { idUser }) => (CrudHelpers.deleteValue(state, idUser))),
 );
 
 export function reducer(state: ProfilesState | undefined, action: Action) {
