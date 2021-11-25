@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { KEY_CRUD } from './../models/key-crud.const';
 import { ProfilesState } from './../models/profiles.model';
 
