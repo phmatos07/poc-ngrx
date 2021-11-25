@@ -1,0 +1,22 @@
+<section class="dialog">
+  <h1 mat-dialog-title>Dialog with elements</h1>
+  <p
+    *ngIf="data?.message"
+    mat-dialog-content
+  >{{ data.message }}</p>
+  <div
+    class="dialog__buttons"
+    mat-dialog-actions
+  >
+    <button
+      mat-button
+      (click)="onAction('CLOSE')"
+    >Fechar</button>
+    <button
+      *ngIf="data.type === DIALOG_TYPE.CONFIRM"
+      mat-button
+      (click)="onAction('OK')"
+      cdkFocusInitial
+    >Ok</button>
+  </div>
+</section>

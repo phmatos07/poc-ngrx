@@ -1,0 +1,10 @@
+.dialog {
+  display: block;
+  width: 100%;
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+  }
+}
