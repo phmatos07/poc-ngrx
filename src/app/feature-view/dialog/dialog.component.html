@@ -10,12 +10,12 @@
   >
     <button
       mat-button
-      (click)="onAction('CLOSE')"
+      (click)="onAction(ACTION_TYPE.CLOSE)"
     >Fechar</button>
     <button
       *ngIf="data.type === DIALOG_TYPE.CONFIRM"
       mat-button
-      (click)="onAction('OK')"
+      (click)="onAction(ACTION_TYPE.OK)"
       cdkFocusInitial
     >Ok</button>
   </div>
