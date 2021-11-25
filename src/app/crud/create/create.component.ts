@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogData } from '../../feature-view/dialog/model/dialog-data.model';
+import { DialogType } from '../../feature-view/dialog/model/dialog-type.enum';
+import { DialogComponent } from './../../feature-view/dialog/dialog.component';
 import { CrudFacade } from './../../store/crud.facade';
 
 @Component({
@@ -14,7 +18,8 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private crud: CrudFacade
+    private crud: CrudFacade,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +38,12 @@ export class CreateComponent implements OnInit {
         cellPhone: this.userRegistration.get('cellPhone')?.value,
         password: this.userRegistration.get('currentPassword')?.value
       });
+
+      this.dialog.open(DialogComponent, {
+        data: new DialogData(DialogType.ALERT, 'Perfil cadastrado com sucesso!'),
+      });
+
+      this.userRegistration.reset();
     }
   }
 
