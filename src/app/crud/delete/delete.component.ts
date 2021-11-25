@@ -25,8 +25,12 @@ export class DeleteComponent implements OnInit {
   }
 
   delete(): void {
-    if (this.selectUsers.valid) {
+    if (this.isSelectValid) {
       this.crud.delete(this.selectUsers.value);
     }
+  }
+
+  get isSelectValid(): boolean {
+    return this.selectUsers?.valid;
   }
 }

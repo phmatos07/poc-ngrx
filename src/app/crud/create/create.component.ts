@@ -26,7 +26,7 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.userRegistration.valid) {
+    if (this.isFormValid) {
       this.crud.create({
         name: this.userRegistration.get('name')?.value,
         email: this.userRegistration.get('email')?.value,
@@ -71,5 +71,9 @@ export class CreateComponent implements OnInit {
 
   private formValue(input: string): string {
     return this.userRegistration.get(input)?.value || '';
+  }
+
+  get isFormValid(): boolean {
+    return this.userRegistration?.valid;
   }
 }
