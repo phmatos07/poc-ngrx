@@ -14,6 +14,15 @@ export class CrudHelpers {
     return { ...state, users: [{ ...user, dateStamp: CrudHelpers.currentDate() }] };
   }
 
+  static updateValue(state: ProfilesState, idUser: number, userState: User): ProfilesState {
+    if (Array.isArray(state.users) && state.users.length >= 1) {
+      const users = [...state.users];
+      users[idUser] = { ...userState, dateStamp: CrudHelpers.currentDate() };
+      return { ...state, users };
+    }
+    return { ...state };
+  }
+
   static deleteValue(state: ProfilesState, idUser: number): ProfilesState {
     if (Array.isArray(state.users) && state.users.length >= 1) {
       const users = Object.assign([], state.users);

@@ -21,6 +21,10 @@ export class CrudFacade {
     this.store.dispatch(CrudActions.CREATE(user));
   }
 
+  update(idUser: number, user: User): void {
+    this.store.dispatch(CrudActions.UPDATE({ idUser, user }));
+  }
+
   delete(idUser: number): void {
     this.store.dispatch(CrudActions.DELETE({ idUser }));
   }

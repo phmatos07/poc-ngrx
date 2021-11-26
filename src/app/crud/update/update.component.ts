@@ -42,12 +42,14 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.isFormValid) {
-      this.crud.create({
-        name: this.userUpdate.get('name')?.value,
-        email: this.userUpdate.get('email')?.value,
-        cellPhone: this.userUpdate.get('cellPhone')?.value,
-        password: this.userUpdate.get('currentPassword')?.value
-      });
+      this.crud.update(
+        this.userUpdate.get('selectUsers')?.value,
+        {
+          name: this.userUpdate.get('name')?.value,
+          email: this.userUpdate.get('email')?.value,
+          cellPhone: this.userUpdate.get('cellPhone')?.value,
+          password: this.userUpdate.get('currentPassword')?.value
+        });
 
       this.dialog.open(DialogComponent, {
         data: new DialogData(DialogType.ALERT, 'Perfil atualizado com sucesso!'),
