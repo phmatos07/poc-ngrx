@@ -19,7 +19,7 @@ export class CreateComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private crud: CrudFacade,
-    public dialog: MatDialog
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {

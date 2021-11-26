@@ -69,11 +69,12 @@
       required
     >
     <button
+      type="button"
       mat-icon-button
       matSuffix
-      (click)="hidePassword()"
       [attr.aria-label]="'Hide password'"
       [attr.aria-pressed]="displaysPassword"
+      (click)="hidePassword()"
     >
       <mat-icon>{{ displaysPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
     </button>

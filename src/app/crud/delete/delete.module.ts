@@ -13,8 +13,8 @@ import { DeleteComponent } from './delete.component';
   imports: [
     CommonModule,
     RouterModule,
-    DeleteRoutingModule,
     ReactiveFormsModule,
+    DeleteRoutingModule,
     MatSelectModule,
     MatButtonModule,
     MatDialogModule,
