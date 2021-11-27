@@ -1,7 +1,7 @@
 <h1>NGRX - Update</h1>
 
 <form
-  *ngIf="users && users.length >= 1"
+  *ngIf="users && users.length >= 1; else noUsers"
   class="form"
   [formGroup]="userUpdate"
   (ngSubmit)="onSubmit()"
@@ -108,3 +108,9 @@
     </div>
   </ng-container>
 </form>
+
+<ng-template #noUsers>
+  <mat-card>
+    Nenhum perfil de usuário cadastrado até o momento.
+  </mat-card>
+</ng-template>

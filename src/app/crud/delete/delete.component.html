@@ -1,7 +1,7 @@
 <h1>NGRX - Delete</h1>
 
 <form
-  *ngIf="users$ | async as users"
+  *ngIf="users$ | async as users; else noUsers"
   class="form"
 >
   <mat-form-field appearance="fill">
@@ -27,3 +27,9 @@
     </button>
   </div>
 </form>
+
+<ng-template #noUsers>
+  <mat-card>
+    Nenhum perfil de usuário cadastrado até o momento.
+  </mat-card>
+</ng-template>

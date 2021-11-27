@@ -1,6 +1,6 @@
 <h1>NGRX - Read</h1>
 
-<table *ngIf="users$ | async as users; else noUsers">
+<table *ngIf="users && users.length >= 1; else noUsers">
   <tr>
     <th color="primary">Nome</th>
     <th>E-mail</th>

@@ -41,6 +41,7 @@ export class DeleteComponent implements OnInit {
         .subscribe((action: ActionType) => {
           if (action === ActionType.OK) {
             this.crud.delete(this.selectUsers.value);
+            delete this.users$;
             this.selectUsers.reset();
           }
         });

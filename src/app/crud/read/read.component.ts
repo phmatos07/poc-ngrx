@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { User } from './../../models/user.model';
 import { CrudFacade } from './../../store/crud.facade';
 
@@ -10,13 +10,17 @@ import { CrudFacade } from './../../store/crud.facade';
 })
 export class ReadComponent implements OnInit {
 
-  users$?: Observable<User[] | undefined>;
+  users?: User[];
 
   constructor(
     private crud: CrudFacade
   ) { }
 
   ngOnInit(): void {
-    this.users$ = this.crud.users$;
+    this.crud.users$
+      .pipe(first())
+      .subscribe((users?: User[]) => this.users = users,
+        error => console.error(error)
+      );
   }
 }
