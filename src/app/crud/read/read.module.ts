@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { ReadRoutingModule } from './read-routing.module';
 import { ReadComponent } from './read.component';
@@ -8,7 +9,8 @@ import { ReadComponent } from './read.component';
   imports: [
     CommonModule,
     RouterModule,
-    ReadRoutingModule
+    ReadRoutingModule,
+    MatCardModule
   ],
   exports: [ReadComponent],
   declarations: [ReadComponent]

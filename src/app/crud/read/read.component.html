@@ -1,6 +1,6 @@
 <h1>NGRX - Read</h1>
 
-<table *ngIf="users$ | async as users">
+<table *ngIf="users$ | async as users; else noUsers">
   <tr>
     <th color="primary">Nome</th>
     <th>E-mail</th>
@@ -17,3 +17,9 @@
     <td>{{ user.dateStamp }}</td>
   </tr>
 </table>
+
+<ng-template #noUsers>
+  <mat-card>
+    Nenhum perfil de usuário cadastrado até o momento.
+  </mat-card>
+</ng-template>
