@@ -22,4 +22,8 @@ export class DialogComponent {
   onAction(actionType: ActionType): void {
     this.dialogRef.close(actionType);
   }
+
+  get buttonColor(): string {
+    return this.data.type === this.DIALOG_TYPE.CONFIRM ? 'warn' : '';
+  }
 }
