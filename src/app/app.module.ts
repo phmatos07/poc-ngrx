@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +12,7 @@ import { AppComponent } from './app.component';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { CrudModule } from './store/crud.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -28,6 +31,10 @@ import { ToolbarModule } from './toolbar/toolbar.module';
       logOnly: environment.production
     }),
     CrudModule
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
   ],
   bootstrap: [AppComponent]
 })
