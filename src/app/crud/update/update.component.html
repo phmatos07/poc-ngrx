@@ -1,0 +1,116 @@
+<h1>NGRX - Update</h1>
+
+<form
+  *ngIf="users && users.length >= 1; else noUsers"
+  class="form"
+  [formGroup]="userUpdate"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>* Selecione um usuário:</mat-label>
+    <mat-select formControlName="selectUsers">
+      <mat-option>Seleione:</mat-option>
+      <mat-option
+        *ngFor="let user of users; let id = index"
+        [value]="id"
+      >
+        {{ user.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-container *ngIf="isSelectUsersValid">
+
+    <mat-form-field
+      appearance="fill"
+      class="form__field"
+    >
+      <mat-label for="name">Nome:</mat-label>
+      <input
+        matInput
+        id="name"
+        type="text"
+        formControlName="name"
+        maxlength="50"
+        placeholder="Digite seu nome completo"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      class="form__field"
+    >
+      <mat-label for="email">E-mail: </mat-label>
+      <input
+        matInput
+        id="email"
+        type="email"
+        formControlName="email"
+        maxlength="100"
+        placeholder="Digite seu e-mail"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      class="form__field"
+    >
+      <mat-label for="cell-phone">Celular: </mat-label>
+      <span matPrefix>+55 &nbsp;</span>
+      <input
+        matInput
+        id="cell-phone"
+        type="tel"
+        formControlName="cellPhone"
+        maxlength="11"
+        placeholder="Digite o DDD e o número de celular"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      class="form__field"
+    >
+      <mat-label for="current-password">Senha: </mat-label>
+      <input
+        matInput
+        id="current-password"
+        [type]="displaysPassword ? 'text' : 'password'"
+        formControlName="currentPassword"
+        maxlength="50"
+        placeholder="Digite sua senha"
+        required
+      >
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="displaysPassword"
+        (click)="hidePassword()"
+      >
+        <mat-icon>{{ displaysPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="form__field">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!isFormValid"
+      >
+        Atualizar Usuário
+      </button>
+    </div>
+  </ng-container>
+</form>
+
+<ng-template #noUsers>
+  <mat-card>
+    Nenhum perfil de usuário cadastrado até o momento.
+  </mat-card>
+</ng-template>

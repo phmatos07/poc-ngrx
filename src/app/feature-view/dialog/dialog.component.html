@@ -1,0 +1,34 @@
+<section class="dialog">
+  <h1
+    *ngIf="data.type === DIALOG_TYPE.ALERT"
+    mat-dialog-title
+  >Alerta
+  </h1>
+  <h1
+    *ngIf="data.type === DIALOG_TYPE.CONFIRM"
+    mat-dialog-title
+  >Confirme a ação
+  </h1>
+
+  <p
+    *ngIf="data?.message"
+    mat-dialog-content
+  >{{ data.message }}</p>
+  <div
+    class="dialog__buttons"
+    mat-dialog-actions
+  >
+    <button
+      mat-raised-button
+      [color]="buttonColor"
+      (click)="onAction(ACTION_TYPE.CLOSE)"
+    >Fechar</button>
+    <button
+      *ngIf="data.type === DIALOG_TYPE.CONFIRM"
+      mat-raised-button
+      cdkFocusInitial
+      color="primary"
+      (click)="onAction(ACTION_TYPE.OK)"
+    >Ok</button>
+  </div>
+</section>

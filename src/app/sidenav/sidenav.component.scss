@@ -1,0 +1,15 @@
+$color-active: rgb(0, 204, 255);
+
+.link {
+  text-decoration: none;
+  margin-left: 1rem;
+
+  &:hover {
+    color: $color-active;
+    text-decoration: underline;
+  }
+
+  &--active {
+    color: $color-active;
+  }
+}

@@ -1,0 +1,35 @@
+<h1>NGRX - Delete</h1>
+
+<form
+  *ngIf="users$ | async as users; else noUsers"
+  class="form"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>* Usuários:</mat-label>
+    <mat-select [formControl]="selectUsers">
+      <mat-option>Seleione:</mat-option>
+      <mat-option
+        *ngFor="let user of users; let id = index"
+        [value]="id"
+      >{{ user.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="form__field">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="!isSelectValid"
+      (click)="delete()"
+    >
+      Deletar Usuário
+    </button>
+  </div>
+</form>
+
+<ng-template #noUsers>
+  <mat-card>
+    Nenhum perfil de usuário cadastrado até o momento.
+  </mat-card>
+</ng-template>

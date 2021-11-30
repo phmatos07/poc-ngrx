@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  display: block;
+  height: 100vh;
+
+  &__sidenav {
+    width: 250px;
+  }
+
+  &__content {
+    padding: 1rem;
+  }
+}
