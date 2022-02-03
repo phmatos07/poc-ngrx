@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { User } from '../../models/user.interface';
 import { DialogComponent } from './../../feature-view/dialog/dialog.component';
 import { DialogData } from './../../feature-view/dialog/model/dialog-data.model';
 import { DialogType } from './../../feature-view/dialog/model/dialog-type.enum';
-import { User } from './../../models/user.model';
 import { CrudFacade } from './../../store/crud.facade';
 
 @Component({
@@ -16,7 +16,7 @@ import { CrudFacade } from './../../store/crud.facade';
 export class UpdateComponent implements OnInit, OnDestroy {
 
   userUpdate = new FormGroup({});
-  users?: User[];
+  users?: User[] | null;
   displaysPassword = false;
 
   private subscriptions = new Subscription();
@@ -42,14 +42,14 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.isFormValid) {
-      this.crud.update(
+      /* this.crud.update(
         this.userUpdate.get('selectUsers')?.value,
         {
           name: this.userUpdate.get('name')?.value,
           email: this.userUpdate.get('email')?.value,
           cellPhone: this.userUpdate.get('cellPhone')?.value,
           password: this.userUpdate.get('currentPassword')?.value
-        });
+        }); */
 
       this.dialog.open(DialogComponent, {
         data: new DialogData(DialogType.ALERT, 'Perfil atualizado com sucesso!'),
@@ -59,11 +59,11 @@ export class UpdateComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getUsers(): Subscription {
-    return this.crud.users$.subscribe((users?: User[]) =>
+  private getUsers(): Subscription | any {
+    /* return this.crud.users$.subscribe((users: User[] | null) =>
       this.users = users,
       error => console.error(error)
-    );
+    ); */
   }
 
   private startForm(): void {
