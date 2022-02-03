@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from '../../feature-view/dialog/model/dialog-data.model';
 import { DialogType } from '../../feature-view/dialog/model/dialog-type.enum';
 import { DialogComponent } from './../../feature-view/dialog/dialog.component';
+import { Helpers } from './../../shared/helpers/helpers';
 import { CrudFacade } from './../../store/crud.facade';
 
 @Component({
@@ -33,10 +34,12 @@ export class CreateComponent implements OnInit {
   onSubmit(): void {
     if (this.isFormValid) {
       this.crud.create({
+        id: Math.random().toString(),
         name: this.userRegistration.get('name')?.value,
         email: this.userRegistration.get('email')?.value,
         cellPhone: this.userRegistration.get('cellPhone')?.value,
-        password: this.userRegistration.get('currentPassword')?.value
+        password: this.userRegistration.get('currentPassword')?.value,
+        dateStamp: Helpers.currentDate()
       });
 
       this.dialog.open(DialogComponent, {
