@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { User } from 'src/app/models/user.interface';
+import { User } from 'src/app/shared/models/user.interface';
 import * as CrudActions from './crud.actions';
 import * as CrudSelectors from './crud.selectors';
 

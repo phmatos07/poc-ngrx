@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { ProfilesState } from '../models/profiles-state.interface';
-import { User } from '../models/user.interface';
+import { ProfilesState } from '../shared/models/profiles-state.interface';
+import { User } from '../shared/models/user.interface';
 import * as crudActions from './crud.actions';
 import { CrudHelpers } from './crud.helpers';
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { KEY_CRUD } from './../models/key-crud.const';
+import { KEY_CRUD } from '../shared/models/key-crud.const';
 import { CrudEffects } from './crud.effects';
 import { CrudFacade } from './crud.facade';
 import * as CrudReducer from './crud.reducer';

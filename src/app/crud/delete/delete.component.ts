@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user.interface';
+import { User } from 'src/app/shared/models/user.interface';
 import { DialogComponent } from './../../feature-view/dialog/dialog.component';
 import { ActionType } from './../../feature-view/dialog/model/action-type.enum';
 import { DialogData } from './../../feature-view/dialog/model/dialog-data.model';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.interface';
+import { User } from '../shared/models/user.interface';
 
 @Injectable()
 export class CrudHelpers {

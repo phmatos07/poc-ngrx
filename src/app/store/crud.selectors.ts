@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { KEY_CRUD } from './../models/key-crud.const';
-import { ProfilesState } from './../models/profiles-state.interface';
+import { KEY_CRUD } from '../shared/models/key-crud.const';
+import { ProfilesState } from '../shared/models/profiles-state.interface';
 import { adapter } from './crud.reducer';
 
 const {

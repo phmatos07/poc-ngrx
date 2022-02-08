@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { User } from '../../models/user.interface';
+import { User } from '../../shared/models/user.interface';
 import { CrudFacade } from './../../store/crud.facade';
 
 @Component({

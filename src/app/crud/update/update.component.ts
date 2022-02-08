@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { User } from '../../models/user.interface';
+import { User } from '../../shared/models/user.interface';
 import { DialogComponent } from './../../feature-view/dialog/dialog.component';
 import { DialogData } from './../../feature-view/dialog/model/dialog-data.model';
 import { DialogType } from './../../feature-view/dialog/model/dialog-type.enum';
