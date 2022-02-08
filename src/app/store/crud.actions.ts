@@ -1,7 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '../shared/models/user.interface';
+import { CrudActionEnum } from './../shared/models/crud-action.enum';
 
-export const INIT = createAction('[CRUD] Init');
-export const CREATE = createAction('[CRUD] Create', props<{ user: User }>());
-export const UPDATE = createAction('[CRUD] Update', props<{ idUser: number, user: User }>());
-export const DELETE = createAction('[CRUD] Delete', props<{ idUser: number }>());
+export const INIT = createAction(CrudActionEnum.INIT);
+export const CREATE = createAction(CrudActionEnum.CREATE, props<{ user: User }>());
+export const UPDATE = createAction(CrudActionEnum.UPDATE, props<{ idUser: number, user: User }>());
+export const DELETE = createAction(CrudActionEnum.DELETE, props<{ idUser: number }>());
