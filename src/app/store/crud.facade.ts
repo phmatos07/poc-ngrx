@@ -16,14 +16,14 @@ export class CrudFacade {
   ) { }
 
   create(user: User): void {
-    this.store.dispatch(CrudActions.CREATE({ user }));
+    this.store.dispatch(CrudActions.CREATE(user));
   }
 
   update(user: Update<User>): void {
-    this.store.dispatch(CrudActions.UPDATE({ update: user }));
+    this.store.dispatch(CrudActions.UPDATE(user));
   }
 
-  delete(idUser: number): void {
-    this.store.dispatch(CrudActions.DELETE({ idUser }));
+  delete(id: string): void {
+    this.store.dispatch(CrudActions.DELETE({ id }));
   }
 }
