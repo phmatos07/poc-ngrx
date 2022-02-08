@@ -4,5 +4,5 @@ export interface User {
   email: string;
   cellPhone: number;
   password: string;
-  dateStamp: string;
+  dateStamp?: string;
 }

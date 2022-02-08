@@ -18,6 +18,7 @@ const _crud = createReducer(
   on(crudActions.CREATE, (state, user) => adapter.addOne(user, state)),
   on(crudActions.UPDATE, (state, user) => adapter.updateOne(user, state)),
   on(crudActions.DELETE, (state, { id }) => adapter.removeOne(id, state)),
+  on(crudActions.UPDATE_DATE, (state, user) => adapter.updateOne(user, state)),
 );
 
 export function reducer(state: ProfilesState | undefined, action: Action) {

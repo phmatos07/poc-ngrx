@@ -7,3 +7,4 @@ export const INIT = createAction(CrudActionEnum.INIT);
 export const CREATE = createAction(CrudActionEnum.CREATE, props<User>());
 export const UPDATE = createAction(CrudActionEnum.UPDATE, props<Update<User>>());
 export const DELETE = createAction(CrudActionEnum.DELETE, props<{ id: string }>());
+export const UPDATE_DATE = createAction(CrudActionEnum.UPDATE_DATE, props<Update<User>>());

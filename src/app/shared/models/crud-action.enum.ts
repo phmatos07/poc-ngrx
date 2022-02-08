@@ -3,4 +3,5 @@ export enum CrudActionEnum {
   CREATE = '[CRUD] Create',
   UPDATE = '[CRUD] Update',
   DELETE = '[CRUD] Delete',
+  UPDATE_DATE = '[CRUD] Update date stamp',
 }
