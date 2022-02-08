@@ -10,14 +10,13 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
   sortComparer: CrudHelpers.sortByName,
 });
 
-export const initialState: ProfilesState = adapter.getInitialState({ });
+export const initialState: ProfilesState = adapter.getInitialState({});
 
 const _crud = createReducer(
   initialState,
   on(crudActions.INIT, (state) => ({ ...state })),
-  on(crudActions.CREATE, (state, { user }) => {
-    return adapter.addOne(user,  state)
-  }),
+  on(crudActions.CREATE, (state, { user }) => adapter.addOne(user, state)),
+  on(crudActions.UPDATE, (state, { update }) => adapter.updateOne(update, state)),
   /*  on(crudActions.UPDATE, (state, { user }) => {
      return adapter.updateOne(user)
    }), */

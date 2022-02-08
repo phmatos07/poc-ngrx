@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Update } from '@ngrx/entity';
 import { select, Store } from '@ngrx/store';
 import { User } from 'src/app/shared/models/user.interface';
 import * as CrudActions from './crud.actions';
@@ -18,8 +19,8 @@ export class CrudFacade {
     this.store.dispatch(CrudActions.CREATE({ user }));
   }
 
-  update(idUser: number, user: User): void {
-    this.store.dispatch(CrudActions.UPDATE({ idUser, user }));
+  update(user: Update<User>): void {
+    this.store.dispatch(CrudActions.UPDATE({ update: user }));
   }
 
   delete(idUser: number): void {
