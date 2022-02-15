@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Update } from '@ngrx/entity';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user.interface';
 import * as CrudActions from './crud.actions';
 import * as CrudSelectors from './crud.selectors';
@@ -25,5 +26,9 @@ export class CrudFacade {
 
   delete(id: string): void {
     this.store.dispatch(CrudActions.DELETE({ id }));
+  }
+
+  selectCurrentUser(id: string): Observable<User | undefined> {
+    return this.store.pipe(select(CrudSelectors.selectCurrentUser(id)));
   }
 }

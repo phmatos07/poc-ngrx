@@ -16,3 +16,4 @@ export const userIds = createSelector(profilesState, selectIds);
 export const userEntities = createSelector(profilesState, selectEntities);
 export const allUsers = createSelector(profilesState, selectAll);
 export const userTotal = createSelector(profilesState, selectTotal);
+export const selectCurrentUser = (id: string) => createSelector(profilesState, (state: ProfilesState) => state.entities[id]);
