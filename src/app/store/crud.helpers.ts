@@ -4,11 +4,11 @@ import { User } from '../shared/models/user.interface';
 @Injectable()
 export class CrudHelpers {
 
-  static selectUserId(a: User): string {
-    return a.id;
+  static selectUserId(user: User): string {
+    return user.id;
   }
 
-  static sortByName(a: User, b: User): number {
-    return a.name.localeCompare(b.name);
+  static sortByName(userA: User, userB: User): number {
+    return userA.name.localeCompare(userB.name);
   }
 }
