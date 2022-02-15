@@ -17,7 +17,7 @@ import { CrudFacade } from './../../store/crud.facade';
 export class UpdateComponent implements OnInit, OnDestroy {
 
   userUpdate = new FormGroup({});
-  users?: User[] | null;
+  users?: User[];
   displaysPassword = false;
 
   private subscriptions = new Subscription();
@@ -30,7 +30,6 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.startForm();
-    this.subscriptions.add(this.getUsers());
   }
 
   ngOnDestroy(): void {
@@ -61,14 +60,6 @@ export class UpdateComponent implements OnInit, OnDestroy {
         data: new DialogData(DialogType.ALERT, 'Perfil atualizado com sucesso!'),
       });
     }
-  }
-
-  private getUsers(): Subscription {
-    return this.crud.allUsers$
-      .subscribe((users: User[] | null) =>
-        this.users = users,
-        error => console.error(error)
-      );
   }
 
   private startForm(): void {
@@ -108,26 +99,37 @@ export class UpdateComponent implements OnInit, OnDestroy {
     });
 
     if (this.userUpdate.get('selectUsers')) {
+      this.subscriptions.add(this.getUsers());
       this.selectUsersChanges();
     }
+  }
+
+  private getUsers(): Subscription {
+    return this.crud.allUsers$
+      .subscribe((users: User[]) =>
+        this.users = users,
+        error => console.error(error)
+      );
   }
 
   private selectUsersChanges(): void {
     this.subscriptions.add(
       this.userUpdate.get('selectUsers')?.valueChanges
-        .subscribe((idUser: number) => {
-          if (typeof idUser === 'number' && this.users) {
-            this.userUpdate.controls['name'].setValue(this.users[idUser].name);
-            this.userUpdate.controls['email'].setValue(this.users[idUser].email);
-            this.userUpdate.controls['cellPhone'].setValue(this.users[idUser].cellPhone);
-            this.userUpdate.controls['currentPassword'].setValue(this.users[idUser].password);
-          }
+        .subscribe((id: string) => {
+          this.userUpdate.controls['name'].setValue(this.selectUser(id)?.name);
+          this.userUpdate.controls['email'].setValue(this.selectUser(id)?.email);
+          this.userUpdate.controls['cellPhone'].setValue(this.selectUser(id)?.cellPhone);
+          this.userUpdate.controls['currentPassword'].setValue(this.selectUser(id)?.password);
         })
     );
   }
 
   private formValue(input: string): string {
     return this.userUpdate.get(input)?.value || '';
+  }
+
+  private selectUser(id: string): User | undefined {
+    return this.users?.find(user => user.id === id);
   }
 
   get isSelectUsersValid(): boolean {
