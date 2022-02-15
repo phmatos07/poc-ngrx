@@ -1,18 +1,24 @@
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { ProfilesState } from '../models/profiles.model';
-import { User } from './../models/user.model';
+import { ProfilesState } from '../shared/models/profiles-state.interface';
+import { User } from '../shared/models/user.interface';
 import * as crudActions from './crud.actions';
 import { CrudHelpers } from './crud.helpers';
 
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
+  selectId: CrudHelpers.selectUserId,
+  sortComparer: CrudHelpers.sortByName,
+});
 
-export const initialState = new ProfilesState();
+export const initialState: ProfilesState = adapter.getInitialState({});
 
 const _crud = createReducer(
   initialState,
   on(crudActions.INIT, (state) => ({ ...state })),
-  on(crudActions.CREATE, (state, userState) => (CrudHelpers.addValue(state, userState))),
-  on(crudActions.UPDATE, (state, dataState: { idUser: number, user: User }) => (CrudHelpers.updateValue(state, dataState.idUser, dataState.user))),
-  on(crudActions.DELETE, (state, { idUser }) => (CrudHelpers.deleteValue(state, idUser))),
+  on(crudActions.CREATE, (state, user) => adapter.addOne(user, state)),
+  on(crudActions.UPDATE, (state, user) => adapter.updateOne(user, state)),
+  on(crudActions.DELETE, (state, { id }) => adapter.removeOne(id, state)),
+  on(crudActions.UPDATE_DATE, (state, user) => adapter.updateOne(user, state)),
 );
 
 export function reducer(state: ProfilesState | undefined, action: Action) {

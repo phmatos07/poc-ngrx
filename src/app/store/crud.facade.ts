@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Update } from '@ngrx/entity';
 import { select, Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { User } from 'src/app/models/user.model';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/shared/models/user.interface';
 import * as CrudActions from './crud.actions';
 import * as CrudSelectors from './crud.selectors';
 
 @Injectable()
 export class CrudFacade {
 
-  users$ = this.store.pipe(
-    select(CrudSelectors.users),
-    map(users => users.users)
-  );
+  fullState$ = this.store.pipe(select(CrudSelectors.fullState));
+  allUsers$ = this.store.pipe(select(CrudSelectors.allUsers));
 
   constructor(
     private readonly store: Store
@@ -21,11 +20,15 @@ export class CrudFacade {
     this.store.dispatch(CrudActions.CREATE(user));
   }
 
-  update(idUser: number, user: User): void {
-    this.store.dispatch(CrudActions.UPDATE({ idUser, user }));
+  update(user: Update<User>): void {
+    this.store.dispatch(CrudActions.UPDATE(user));
   }
 
-  delete(idUser: number): void {
-    this.store.dispatch(CrudActions.DELETE({ idUser }));
+  delete(id: string): void {
+    this.store.dispatch(CrudActions.DELETE({ id }));
+  }
+
+  selectCurrentUser(id: string): Observable<User | undefined> {
+    return this.store.pipe(select(CrudSelectors.selectCurrentUser(id)));
   }
 }

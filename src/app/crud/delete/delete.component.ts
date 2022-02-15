@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user.model';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/shared/models/user.interface';
 import { DialogComponent } from './../../feature-view/dialog/dialog.component';
 import { ActionType } from './../../feature-view/dialog/model/action-type.enum';
 import { DialogData } from './../../feature-view/dialog/model/dialog-data.model';
@@ -14,12 +14,14 @@ import { CrudFacade } from './../../store/crud.facade';
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss']
 })
-export class DeleteComponent implements OnInit {
+export class DeleteComponent implements OnInit, OnDestroy {
 
-  users$?: Observable<User[] | undefined>;
+  users?: User[];
   selectUsers = new FormControl('', [
     Validators.required
   ]);
+
+  private subscription = new Subscription();
 
   constructor(
     private crud: CrudFacade,
@@ -27,7 +29,11 @@ export class DeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.users$ = this.crud.users$;
+    this.subscription.add(this.getAllUsers());
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   delete(): void {
@@ -41,11 +47,22 @@ export class DeleteComponent implements OnInit {
         .subscribe((action: ActionType) => {
           if (action === ActionType.OK) {
             this.crud.delete(this.selectUsers.value);
-            delete this.users$;
+            delete this.users;
             this.selectUsers.reset();
           }
         });
     }
+  }
+
+  private getAllUsers(): Subscription {
+    return this.crud.allUsers$
+      .subscribe((users: User[]) => this.users = users,
+        error => console.error(error)
+      );
+  }
+
+  get isUsers(): boolean {
+    return Array.isArray(this.users) && this.users.length >= 1;
   }
 
   get isSelectValid(): boolean {

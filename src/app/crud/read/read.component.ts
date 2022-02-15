@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { User } from './../../models/user.model';
+import { User } from '../../shared/models/user.interface';
 import { CrudFacade } from './../../store/crud.facade';
 
 @Component({
@@ -17,9 +17,13 @@ export class ReadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.crud.users$
+    this.getAllUsers();
+  }
+
+  private getAllUsers(): void {
+    this.crud.allUsers$
       .pipe(first())
-      .subscribe((users?: User[]) => this.users = users,
+      .subscribe((users: User[]) => this.users = users,
         error => console.error(error)
       );
   }
