@@ -10,7 +10,7 @@ import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidenavModule } from './sidenav/sidenav.module';
-import { CrudModule } from './store/crud.module';
+import { CrudStoreModule } from './store/crud.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
 registerLocaleData(localePt);
 
@@ -30,7 +30,7 @@ registerLocaleData(localePt);
       maxAge: 25,
       logOnly: environment.production
     }),
-    CrudModule
+    CrudStoreModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
