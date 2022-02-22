@@ -17,4 +17,4 @@ import * as CrudReducer from './crud.reducer';
   ],
   providers: [CrudFacade]
 })
-export class CrudModule { }
+export class CrudStoreModule { }
