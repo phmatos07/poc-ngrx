@@ -9,6 +9,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { metaReducers } from './shared/helpers/logger.meta.reducer';
+import { MAX_AGE } from './shared/models/standard-variables.const';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { CrudStoreModule } from './store/crud.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
@@ -25,9 +27,15 @@ registerLocaleData(localePt);
     ToolbarModule,
     SidenavModule,
     MatSidenavModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({}, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      },
+      metaReducers
+    }),
     StoreDevtoolsModule.instrument({
-      maxAge: 25,
+      maxAge: MAX_AGE,
       logOnly: environment.production
     }),
     CrudStoreModule
